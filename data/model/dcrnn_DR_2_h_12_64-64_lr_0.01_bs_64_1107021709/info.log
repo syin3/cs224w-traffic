@@ -1,0 +1,12 @@
+2018-11-07 02:17:09,936 - model.dcrnn_supervisor - INFO - Log directory: data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1107021709/
+2018-11-07 02:17:09,937 - model.dcrnn_supervisor - INFO - {'base_dir': 'data/model', 'train': {'epoch': 0, 'steps': [20, 30, 40, 50], 'lr_decay_ratio': 0.1, 'test_every_n_epochs': 10, 'dropout': 0, 'global_step': 0, 'max_to_keep': 100, 'epsilon': 0.001, 'min_learning_rate': 2e-06, 'max_grad_norm': 5, 'base_lr': 0.01, 'epochs': 100, 'optimizer': 'adam', 'patience': 50}, 'data': {'test_batch_size': 64, 'dataset_dir': 'data/METR-LA', 'batch_size': 64, 'val_batch_size': 64, 'graph_pkl_filename': 'data/sensor_graph/adj_mx.pkl'}, 'model': {'output_dim': 1, 'horizon': 12, 'num_nodes': 207, 'use_curriculum_learning': True, 'input_dim': 2, 'l1_decay': 0, 'max_diffusion_step': 2, 'num_rnn_layers': 2, 'seq_len': 12, 'filter_type': 'dual_random_walk', 'rnn_units': 64, 'cl_decay_steps': 2000}, 'log_level': 'INFO'}
+2018-11-07 02:17:36,940 - model.dcrnn_supervisor - INFO - ('x_train', (23974, 12, 207, 2))
+2018-11-07 02:17:36,940 - model.dcrnn_supervisor - INFO - ('y_test', (6850, 12, 207, 2))
+2018-11-07 02:17:36,940 - model.dcrnn_supervisor - INFO - ('y_train', (23974, 12, 207, 2))
+2018-11-07 02:17:36,940 - model.dcrnn_supervisor - INFO - ('x_test', (6850, 12, 207, 2))
+2018-11-07 02:17:36,940 - model.dcrnn_supervisor - INFO - ('y_val', (3425, 12, 207, 2))
+2018-11-07 02:17:36,941 - model.dcrnn_supervisor - INFO - ('x_val', (3425, 12, 207, 2))
+2018-11-07 02:17:41,331 - model.dcrnn_supervisor - INFO - Total number of trainable parameters: 75136
+2018-11-07 02:17:41,623 - model.dcrnn_supervisor - INFO - Start training ...
+2018-11-07 02:33:22,320 - model.dcrnn_supervisor - INFO - Epoch [0/100] (375) train_mae: 2.7136, val_mae: 4.0748 lr:0.010000 940.6s
+2018-11-07 02:33:22,396 - model.dcrnn_supervisor - INFO - Val loss decrease from inf to 4.0748, saving to data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1107021709/models-4.0748-375
