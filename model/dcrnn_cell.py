@@ -176,7 +176,11 @@ class DCGRUCell(RNNCell):
 
         n2vMatrix = tf.reshape(n2vMatrix, (batch_size * self._num_nodes, -1))
         inputDim = int(inputs.get_shape()[1].value)
-        # inputs = tf.concat([inputs, n2vMatrix], axis=-1)
+        
+        # need to control this line
+        # when training/ predicting without node2vec, comment out
+        # when training/ predicting with node2vec, comment in
+        inputs = tf.concat([inputs, n2vMatrix], axis=-1)
         # print(inputs.get_shape())
         # exit()
 
@@ -212,9 +216,6 @@ class DCGRUCell(RNNCell):
 
         # print(inputs)
         # Reshape input and state to (batch_size, num_nodes, input_dim/state_dim)
-
-        global n2vMatrix
-        n2vDim = int(n2vMatrix.get_shape()[1].value / 207)
 
         batch_size = inputs.get_shape()[0].value
         inputs = tf.reshape(inputs, (batch_size, self._num_nodes, -1))
@@ -280,7 +281,7 @@ class DCGRUCell(RNNCell):
             # print(x.get_shape(), '**********')
             # (13248, 640) or (13248, 330)
             # print(input_size, num_matrices, output_size)
-            print(weights.get_shape(), '**********')
+            # print(weights.get_shape(), '**********')
             # 640, 330 paired with 64, 128 in encoding
             # 640, 325 paired with 64, 128 in encoding
 

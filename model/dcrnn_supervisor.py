@@ -233,9 +233,7 @@ class DCRNNSupervisor(object):
         kwargs.update(self._train_kwargs)
         return self._train(sess, **kwargs)
 
-    def _train(self, sess, base_lr, epoch, steps, patience=50, epochs=100,
-               min_learning_rate=2e-6, lr_decay_ratio=0.1, save_model=1,
-               test_every_n_epochs=10, **train_kwargs):
+    def _train(self, sess, base_lr, epoch, steps, patience=50, epochs=100, min_learning_rate=2e-6, lr_decay_ratio=0.1, save_model=1, test_every_n_epochs=10, **train_kwargs):
         history = []
         min_val_loss = float('inf')
         wait = 0
@@ -309,6 +307,9 @@ class DCRNNSupervisor(object):
 
     def evaluate(self, sess, **kwargs):
         global_step = sess.run(tf.train.get_or_create_global_step())
+        # print(type(self._data['test_loader'].get_iterator()))
+        # print(self._data['test_loader'].get_iterator())
+        # exit()
         test_results = self.run_epoch_generator(sess, self._test_model,
                                                 self._data['test_loader'].get_iterator(),
                                                 return_output=True,
