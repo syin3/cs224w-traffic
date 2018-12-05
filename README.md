@@ -28,6 +28,11 @@ The generated train/val/test dataset will be saved at `data/METR-LA/{train,val,t
 ## 3, Graph Embedding Data Preparation
 Follow the instructions in file `embeddings.ipynb`, we produce graph embeddings of designated dimension, which later is attached to the input feature matrix and is then fed to the fully connected neural network.
 
+Activate Python2 environment for node2vec by`source activate cs224w`;
+Then either generate a single node2vec by
+`python n2v-main.py --input METR-LA.txt --output LA-n2v-temp.txt --dimensions 8 --p 1 --weighted --directed`
+or by `sh generate-hyperparam-grid.sh` to generate our hyperparameter grid.
+
 ## 4, Model Training
 ```bash
 python dcrnn_train.py --config_filename=data/model/dcrnn_config.yaml
