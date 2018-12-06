@@ -34,8 +34,9 @@ Then either generate a single node2vec by
 or by `sh generate-hyperparam-grid.sh` to generate our hyperparameter grid.
 
 ## 4, Model Training
+
 ```bash
-python dcrnn_train.py --config_filename=data/model/dcrnn_config.yaml
+sh exec.sh LA-n2v-2-0.1-1
 ```
 Each epoch takes about 5min with a single GTX 1080 Ti (on DCRNN by author of paper). Out running time on AWS Tesla K80 takes 15 minues for each epoch (DCRNN, by us).
 
@@ -46,7 +47,7 @@ On AWS Tesla K80, each epoch only takes 1-2 min (at least 90% faster, on FCRNN, 
 Evaluate the trained models using `run_demo.py`. Please notice you need to adjust files, directories personally.
 
 ```bash
-python run_demo.py
+python run_demo.py --config_filename './data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1108092636/config_55.yaml' --output_filename 'dcrnn.npz'
 ```
 
 ## 6, Visualization
@@ -62,5 +63,13 @@ title={Diffusion Convolutional Recurrent Neural Network: Data-Driven Traffic For
 author={Li, Yaguang and Yu, Rose and Shahabi, Cyrus and Liu, Yan},
 booktitle={International Conference on Learning Representations (ICLR '18)},
 year={2018}
+}
+@inproceedings{grover2016node2vec,
+title={node2vec: Scalable feature learning for networks},
+author={Grover, Aditya and Leskovec, Jure},
+booktitle={Proceedings of the 22nd ACM SIGKDD international conference on Knowledge discovery and data mining},
+pages={855--864},
+year={2016},
+organization={ACM}
 }
 ```
