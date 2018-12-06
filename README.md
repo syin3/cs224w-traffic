@@ -46,7 +46,9 @@ On AWS Tesla K80, each epoch only takes 1-2 min (at least 90% faster, on FCRNN, 
 
 ## 5, Model evaluation
 
-Evaluate the trained models using `run_demo.py`. Please notice you need to adjust files, directories personally.
+The preferred way is to actually make use of the log information.
+
+Also, we can evaluate the trained models using `run_demo.py`. Please notice you need to adjust files, directories personally.
 
 ```bash
 python run_demo.py --config_filename './data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1108092636/config_55.yaml' --output_filename 'dcrnn.npz'
