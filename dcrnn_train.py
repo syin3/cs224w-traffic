@@ -11,6 +11,7 @@ from model.dcrnn_supervisor import DCRNNSupervisor
 
 
 def main(args):
+    
     with open(args.config_filename) as f:
         supervisor_config = yaml.load(f)
 
@@ -32,5 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--config_filename', default=None, type=str,
                         help='Configuration filename for restoring the model.')
     parser.add_argument('--use_cpu_only', default=False, type=bool, help='Set to true to only use cpu.')
+
     args = parser.parse_args()
+
     main(args)
