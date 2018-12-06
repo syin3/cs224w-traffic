@@ -35,6 +35,8 @@ or by `sh generate-hyperparam-grid.sh` to generate our hyperparameter grid.
 
 ## 4, Model Training
 
+Notice data file in **npy** formats should be in the same subdirecotry with **exec.sh**.
+
 ```bash
 sh exec.sh LA-n2v-2-0.1-1
 ```
