@@ -21,11 +21,12 @@ def main(args):
         tf_config = tf.ConfigProto()
         # if args.use_cpu_only:
         #     tf_config = tf.ConfigProto(device_count={'GPU': 0})
+        tf_config = tf.ConfigProto(allow_soft_placement = True)
         tf_config.gpu_options.allow_growth = True
-        with tf.Session(config=tf_config) as sess:
-            supervisor = DCRNNSupervisor(adj_mx=adj_mx, **supervisor_config)
-
-            supervisor.train(sess=sess)
+        with tf.device('/device:GPU:{}'.format(args.gpu_id)):
+            with tf.Session(config=tf_config) as sess:
+                supervisor = DCRNNSupervisor(adj_mx=adj_mx, **supervisor_config)
+                supervisor.train(sess=sess)
 
 
 if __name__ == '__main__':
@@ -33,6 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('--config_filename', default=None, type=str,
                         help='Configuration filename for restoring the model.')
     parser.add_argument('--use_cpu_only', default=False, type=bool, help='Set to true to only use cpu.')
+    parser.add_argument('--gpu_id', type=int, help='Set the id of gpu this is allocated')
 
     args = parser.parse_args()
 
