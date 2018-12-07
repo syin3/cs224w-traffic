@@ -19,15 +19,14 @@ def main(args):
         sensor_ids, sensor_id_to_ind, adj_mx = load_graph_data(graph_pkl_filename)
 
         tf_config = tf.ConfigProto()
-        if args.use_cpu_only:
-            tf_config = tf.ConfigProto(device_count={'GPU': 0})
+        # if args.use_cpu_only:
+#        tf_config = tf.ConfigProto(device_count={'GPU': 2})
+        tf_config = tf.ConfigProto(allow_soft_placement = True)
         tf_config.gpu_options.allow_growth = True
-        with tf.Session(config=tf_config) as sess:
-            supervisor = DCRNNSupervisor(adj_mx=adj_mx, **supervisor_config)
-
-            supervisor.train(sess=sess)
-
-
+        with tf.device('/device:GPU:1'):
+            with tf.Session(config=tf_config) as sess:
+                supervisor = DCRNNSupervisor(adj_mx=adj_mx, **supervisor_config)
+                supervisor.train(sess=sess)
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config_filename', default=None, type=str,
