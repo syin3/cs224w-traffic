@@ -67,7 +67,7 @@ See `plot.ipynb` for the visualization of results.
 
 ## 7, Please cite original paper as specified by authors
 
-If you find this repository useful in your research, please cite the following paper:
+If you find this repository useful in your research, please cite the following papers:
 ```
 @inproceedings{li2018dcrnn_traffic,
 title={Diffusion Convolutional Recurrent Neural Network: Data-Driven Traffic Forecasting},
@@ -75,11 +75,21 @@ author={Li, Yaguang and Yu, Rose and Shahabi, Cyrus and Liu, Yan},
 booktitle={International Conference on Learning Representations (ICLR '18)},
 year={2018}
 }
+
 @inproceedings{grover2016node2vec,
 title={node2vec: Scalable feature learning for networks},
 author={Grover, Aditya and Leskovec, Jure},
 booktitle={Proceedings of the 22nd ACM SIGKDD international conference on Knowledge discovery and data mining},
 pages={855--864},
+year={2016},
+organization={ACM}
+}
+
+@inproceedings{wang2016structural,
+title={Structural deep network embedding},
+author={Wang, Daixin and Cui, Peng and Zhu, Wenwu},
+booktitle={Proceedings of the 22nd ACM SIGKDD international conference on Knowledge discovery and data mining},
+pages={1225--1234},
 year={2016},
 organization={ACM}
 }
