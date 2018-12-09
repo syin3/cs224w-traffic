@@ -35,14 +35,21 @@ or by `sh generate-hyperparam-grid.sh` to generate our hyperparameter grid.
 
 ## 4, Model Training
 
-Notice data file in **npy** formats should be in the same subdirecotry with **exec.sh**.
+Data files in **npy** formats should be in the same subdirecotry with **exec.sh**.
 
+If you do trianing on single GPU, use `exec.sh` as follows.
 ```bash
 sh exec.sh LA-n2v-2-0.1-1
 ```
+If you want  to make use of multiple GPUs (we used 8 Tesla K80 in the last stage of our work), use `para_exec.sh` instead. However, please pay attent to your disk type on the cluster. Disk I/O might be a limiting factor in your project development. We tried to run 8 training screens on each of our 8 K80 GPUs, but crashed because our disk on Google Cloud does not endure the amount of Disk I/O the trainings are producing. We trained 4 simutaneously instead. Note `file1` are names of files without `.npy`.
+
+```bash
+sh para_exec.sh file1 file2 file3 ... 
+```
+
 Each epoch takes about 5min with a single GTX 1080 Ti (on DCRNN by author of paper). Out running time on AWS Tesla K80 takes 15 minues for each epoch (DCRNN, by us).
 
-On AWS Tesla K80, each epoch only takes 1-2 min (at least 90% faster, on FCRNN, by us).
+On AWS Tesla K80, each epoch only takes 1-2 min (at least 90% faster, on FCRNN, by us). On NVIDIA P100, each epoch takes only 30 seconds.
 
 ## 5, Model evaluation
 
