@@ -14,7 +14,7 @@ Current implementation currently only supports sensor ids in Los Angeles (see `d
 python -m scripts.gen_adj_mx.py  --sensor_ids_filename=data/sensor_graph/graph_sensor_ids.txt --normalized_k=0.1\
 --output_pkl_filename=data/sensor_graph/adj_mx.pkl
 ```
-In file `ProduceEdgeList.ipynb`, we inspect the dimension, directedness and other features of the adjacency matrix of LA highway sensor system.
+In file `/figures/ProduceEdgeList.ipynb`, we inspect the dimension, directedness and other features of the adjacency matrix of LA highway sensor system.
 
 ## 2, Traffic Data Preparation
 The traffic data file for Los Angeles, i.e., `df_highway_2012_4mon_sample.h5`, is available [here](https://drive.google.com/open?id=1tjf5aXCgUoimvADyxKqb-YUlxP8O46pb), and should be
@@ -63,7 +63,7 @@ python run_demo.py --config_filename './data/model/dcrnn_DR_2_h_12_64-64_lr_0.01
 
 ## 6, Visualization
 
-See `plot.ipynb` for the visualization of results.
+See `/figures/plot.ipynb` for the visualization of results.
 
 ## 7, Please cite original paper as specified by authors
 
