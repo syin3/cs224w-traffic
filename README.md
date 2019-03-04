@@ -35,11 +35,11 @@ or by `sh generate-hyperparam-grid.sh` to generate our hyperparameter grid.
 
 ## 4, Model Training
 
-Data files in **npy** formats should be in the same subdirecotry with **exec.sh**.
+Data files in **npy** formats should be in the data subdirecotry.
 
 If you do trianing on single GPU, use `exec.sh` as follows.
 ```bash
-sh exec.sh LA-n2v-2-0.1-1
+sh exec.sh ./data/embeddings/LA-n2v-2-0.1-1
 ```
 If you want  to make use of multiple GPUs (we used 8 Tesla K80 in the last stage of our work), use `para_exec.sh` instead. However, please pay attent to your disk type on the cluster. Disk I/O might be a limiting factor in your project development. We tried to run 8 training screens on each of our 8 K80 GPUs, but crashed because our disk on Google Cloud does not endure the amount of Disk I/O the trainings are producing. We trained 4 simutaneously instead. Note `file1` are names of files without `.npy`.
 
