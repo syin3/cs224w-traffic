@@ -53,15 +53,15 @@ We talk about training in one GPU.
 
 The arguments fed into **dcrnn_train.py** are dependent as follows:
 
-    + --config_filename,
-    + --use_cpu_only;
-    + --weightType
-    + --att;
-    + --no-att
-    + fc
-        * --gEmbedFile 
-    + graphConv
-        * --hop
++ --config_filename,
++ --use_cpu_only;
++ --weightType
++ --att;
++ --no-att
++ fc
+    * --gEmbedFile 
++ graphConv
+    * --hop
 
 do this for distance-aware training
 ```bash
