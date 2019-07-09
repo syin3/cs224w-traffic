@@ -53,31 +53,35 @@ We talk about training in one GPU.
 
 The arguments fed into **dcrnn_train.py** are dependent as follows:
 
-+ --config_filename,
-+ --use_cpu_only;
-+ --weightType
-+ --att;
-+ --no-att
-+ fc
-    * --gEmbedFile 
-+ graphConv
-    * --hop
++ **--config_filename**: the configuration file where hyperparameters are recorded;
++ **--use_cpu_only**: flag to use cpu only for training;
++ **--weightType**: distance-smoothed or binary adjancency;
++ **--att**: flag to use attention;
++ **--no-att**: flag not to use attention;
++ **fc**: flag to use fully connected cells
+    - **--gEmbedFile**: if  **fc**, need to specify which embedding file to use;
++ **graphConv**: flag to use graph convolution
+    - **--hop**: if **graphConv**, need to specify hop of neighborhood;
 
-do this for distance-aware training
+Therefore, this is a combination of {distance-aware, binary}, {fully connected, graph convolution}, and {attention, no-attention}.
+
+You could do these for distance-aware training
 ```bash
-python dcrnn_train.py --config_filename data/model/dcrnn_la.yaml graphConv --wMatrixType distance --hop 1
+python dcrnn_train.py --config_filename data/model/dcrnn_la.yaml --weightType d --no-att graphConv --hop 1
+python dcrnn_train.py --config_filename data/model/dcrnn_la.yaml --weightType d --no-att fc --gEmbedFile LA-n2v-14-0.1-1
 ```
-and this for fully connected cells
+and these for binary
 
 ```bash
+python dcrnn_train.py --config_filename data/model/dcrnn_la.yaml --weightType a --no-att graphConv --hop 2
 python dcrnn_train.py --config_filename data/model/dcrnn_la.yaml --weightType a --no-att fc --gEmbedFile LA-n2v-14-0.1-1
 ```
 
-If you want  to make use of multiple GPUs (we used 8 Tesla K80 in the last stage of our work), use `para_exec.sh` instead. However, please pay attent to your disk type on the cluster. Disk I/O might be a limiting factor in your project development. We tried to run 8 training screens on each of our 8 K80 GPUs, but crashed because our disk on Google Cloud does not endure the amount of Disk I/O the trainings are producing. We trained 4 simutaneously instead. Note `file1` are names of files without `.npy`.
-
-```bash
-sh para_exec.sh file1 file2 file3 ... 
-```
+<!--If you want  to make use of multiple GPUs (we used 8 Tesla K80 in the last stage of our work), use `para_exec.sh` instead. However, please pay attent to your disk type on the cluster. Disk I/O might be a limiting factor in your project development. We tried to run 8 training screens on each of our 8 K80 GPUs, but crashed because our disk on Google Cloud does not endure the amount of Disk I/O the trainings are producing. We trained 4 simutaneously instead. Note `file1` are names of files without `.npy`.-->
+<!---->
+<!--```bash-->
+<!--sh para_exec.sh file1 file2 file3 ... -->
+<!--```-->
 
 Each epoch takes about 5min with a single GTX 1080 Ti (on DCRNN).
 
@@ -85,11 +89,11 @@ Each epoch takes about 5min with a single GTX 1080 Ti (on DCRNN).
 
 The preferred way is to actually make use of the log information.
 
-Also, we can evaluate the trained models using `run_demo.py`. Please notice you need to adjust files, directories personally.
-
-```bash
-python run_demo.py --config_filename './data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1108092636/config_55.yaml' --output_filename 'dcrnn.npz'
-```
+<!--Also, we can evaluate the trained models using `run_demo.py`. Please notice you need to adjust files, directories personally.-->
+<!---->
+<!--```bash-->
+<!--python run_demo.py --config_filename './data/model/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_1108092636/config_55.yaml' --output_filename 'dcrnn.npz'-->
+<!--```-->
 
 ## 6, Visualization
 
